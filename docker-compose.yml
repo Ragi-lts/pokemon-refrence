@@ -1,0 +1,17 @@
+version: '3'
+services:
+  app:
+    build: 
+      context: .
+      dockerfile: ./app/Dockerfile
+    container_name: webfrontend
+    volumes:
+      - './app:/app'
+      # - node_modules:/app/node_modules:cached # named volume化 + cached option
+      # - yarn_cache:/usr/local/share/.cache/yarn/v6:cached # named volume化 + cached option
+    command: 'sh docker-entrypoint.sh'
+    ports:
+      - 5173:5173
+volumes:
+  node_modules:
+  yarn_cache:
